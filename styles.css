@@ -1,0 +1,126 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  --cell-size: 100px;
+  --mark-size: calc(var(--cell-size) * .8);
+  --mark-width: calc(var(--mark-size) * .1)
+}
+
+body {
+  margin: 0;
+  position: relative;
+}
+
+.board {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(3, auto);
+}
+
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.cell.x,
+.cell.o {
+  cursor: not-allowed;
+}
+
+.cell:not(:nth-child(n + 4)) {
+  border-top: none;
+}
+
+.cell:nth-child(3n + 1) {
+  border-left: none;
+}
+
+.cell:nth-child(3n) {
+  border-right: none;
+}
+
+.cell:nth-child(n + 7) {
+  border-bottom: none;
+}
+
+.board.x .cell:not(.x):not(.o):hover::after,
+.board.x .cell:not(.x):not(.o):hover::before,
+.cell.x::after,
+.cell.x::before {
+  content: '';
+  width: var(--mark-width);
+  height: var(--mark-size);
+  background: black;
+  transform: rotate(-45deg);
+  position: absolute;
+}
+
+.board.x .cell:not(.x):not(.o):hover::before,
+.cell.x::before {
+  transform: rotate(45deg);
+}
+
+.board.o .cell:not(.x):not(.o):hover::after,
+.cell.o::after {
+  content: '';
+  width: var(--mark-size);
+  height: var(--mark-size);
+  background: white;
+  border: var(--mark-width) solid #000;
+  border-radius: 50%;
+}
+
+.board.x .cell:not(.x):not(.o):hover::after,
+.board.x .cell:not(.x):not(.o):hover::before {
+  background: grey;
+}
+
+.board.o .cell:not(.x):not(.o):hover::after {
+  border-color: grey;
+}
+
+.message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, .7);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: none;
+}
+
+.message.show {
+  display: flex;
+}
+
+.message strong {
+  color: white;
+  font-size: 5rem;
+}
+
+.button-restart {
+  font-size: 3rem;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.info span {
+  text-transform: uppercase;
+  font-size: 2rem;
+}
