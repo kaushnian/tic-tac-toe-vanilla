@@ -18,9 +18,6 @@ const boardEl = document.querySelector('.board');
 const players = { x: 'x', o: 'o' };
 let currentPlayer = players.x;
 
-const infoEl = document.querySelector('.info span');
-infoEl.innerHTML = currentPlayer;
-
 buttonRestartEl.addEventListener('click', startGame);
 
 startGame();
@@ -94,6 +91,5 @@ function placeMark(cell) {
 function switchTurns() {
   boardEl.classList.remove(currentPlayer);
   currentPlayer = currentPlayer === players.x ? players.o : players.x;
-  infoEl.textContent = currentPlayer;
   boardEl.classList.add(currentPlayer);
 }

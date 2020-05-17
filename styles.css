@@ -119,8 +119,3 @@ body {
   cursor: pointer;
   border: 1px solid black;
 }
-
-.info span {
-  text-transform: uppercase;
-  font-size: 2rem;
-}
